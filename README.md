@@ -41,6 +41,29 @@ php artisan boost:install
 
 Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
 
+## Tentang Proyek SIAKAD
+
+SIAKAD adalah aplikasi Sistem Informasi Akademik berbasis Laravel untuk mengelola data dosen, mahasiswa, mata kuliah, jadwal perkuliahan, dan Kartu Rencana Studi (KRS).
+
+### Ringkasan Fitur
+
+- Autentikasi pengguna dengan pendaftaran, login, verifikasi email, dan profil akun.
+- Dashboard Admin untuk mengelola master data dosen, mahasiswa, mata kuliah, dan jadwal kuliah.
+- Modul Master Dosen, Master Mahasiswa, Master Mata Kuliah, dan Manajemen Jadwal.
+- Dashboard Mahasiswa untuk melihat jadwal tersedia, mengambil KRS, dan membatalkan mata kuliah.
+- Batas maksimal KRS 24 SKS dan validasi data relasi.
+
+### Halaman Utama
+
+- `/` : tampilan landing page Laravel default.
+- `/dashboard` : redirect ke dashboard Admin atau Mahasiswa berdasarkan peran.
+- `/profile` : halaman pengaturan profil pengguna.
+- `/admin/dosen` : manajemen data dosen.
+- `/admin/mahasiswa` : manajemen data mahasiswa.
+- `/admin/matakuliah` : manajemen data mata kuliah.
+- `/admin/jadwal` : manajemen jadwal perkuliahan.
+- `/mahasiswa/dashboard` : panel KRS dan jadwal mahasiswa.
+
 ## Contributing
 
 Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
