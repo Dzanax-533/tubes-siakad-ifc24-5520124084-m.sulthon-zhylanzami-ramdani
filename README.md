@@ -43,26 +43,39 @@ Boost provides your agent 15+ tools and skills that help agents build Laravel ap
 
 ## Tentang Proyek SIAKAD
 
-SIAKAD adalah aplikasi Sistem Informasi Akademik berbasis Laravel untuk mengelola data dosen, mahasiswa, mata kuliah, jadwal perkuliahan, dan Kartu Rencana Studi (KRS).
+SIAKAD adalah sistem informasi akademik berbasis Laravel untuk manajemen data dosen, mahasiswa, mata kuliah, jadwal perkuliahan, dan Kartu Rencana Studi (KRS).
 
-### Ringkasan Fitur
+Aplikasi ini memiliki dua alur pengguna utama:
+- **Admin**: kelola master data akademik, jadwal perkuliahan, dan hak akses.
+- **Mahasiswa**: akses dashboard akademik, pilih mata kuliah KRS, dan pantau jadwal.
 
-- Autentikasi pengguna dengan pendaftaran, login, verifikasi email, dan profil akun.
-- Dashboard Admin untuk mengelola master data dosen, mahasiswa, mata kuliah, dan jadwal kuliah.
-- Modul Master Dosen, Master Mahasiswa, Master Mata Kuliah, dan Manajemen Jadwal.
-- Dashboard Mahasiswa untuk melihat jadwal tersedia, mengambil KRS, dan membatalkan mata kuliah.
-- Batas maksimal KRS 24 SKS dan validasi data relasi.
+### Fitur Utama
 
-### Halaman Utama
+- Autentikasi lengkap: pendaftaran, login, verifikasi email, dan profil pengguna.
+- Dashboard admin untuk manajemen master data dosen, mahasiswa, mata kuliah, dan jadwal.
+- Modul KRS mahasiswa dengan validasi pengambilan dan batas beban studi 24 SKS.
+- Relasi data otomatis antara dosen, mahasiswa, jadwal, dan mata kuliah.
+- Middleware role-based untuk memisahkan akses `admin` dan `mahasiswa`.
 
-- `/` : tampilan landing page Laravel default.
-- `/dashboard` : redirect ke dashboard Admin atau Mahasiswa berdasarkan peran.
-- `/profile` : halaman pengaturan profil pengguna.
+### Struktur Halaman
+
+- `/` : halaman landing default Laravel.
+- `/dashboard` : redirect ke dashboard sesuai peran pengguna.
+- `/profile` : halaman pengaturan profil akun.
 - `/admin/dosen` : manajemen data dosen.
 - `/admin/mahasiswa` : manajemen data mahasiswa.
 - `/admin/matakuliah` : manajemen data mata kuliah.
 - `/admin/jadwal` : manajemen jadwal perkuliahan.
 - `/mahasiswa/dashboard` : panel KRS dan jadwal mahasiswa.
+
+### Cara Menjalankan
+
+1. Salin `.env.example` ke `.env`.
+2. Jalankan `composer install` dan `npm install`.
+3. Jalankan `php artisan key:generate`.
+4. Konfigurasikan database di `.env`.
+5. Jalankan `php artisan migrate`.
+6. Jalankan `php artisan serve`.
 
 ## Contributing
 
