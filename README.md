@@ -1,94 +1,82 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# SIAKAD - Sistem Informasi Akademik
+
+SIAKAD adalah aplikasi manajemen akademik berbasis Laravel yang dirancang untuk mempermudah administrasi kampus. Proyek ini menggabungkan manajemen data dosen, mahasiswa, mata kuliah, jadwal perkuliahan, dan Kartu Rencana Studi (KRS) dalam satu platform.
 
 <p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
+  <img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="320" alt="Laravel Logo">
 </p>
 
-## About Laravel
+## Ringkasan Proyek
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Aplikasi SIAKAD mendukung dua peran utama:
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+- **Admin**: mengelola master data akademik dan jadwal kuliah.
+- **Mahasiswa**: memilih mata kuliah KRS, memonitor jadwal, dan melihat ringkasan SKS.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Fitur Utama
 
-## Learning Laravel
+- Autentikasi lengkap: registrasi, login, dan verifikasi email.
+- Dashboard berbeda untuk `admin` dan `mahasiswa`.
+- CRUD master data untuk Dosen, Mahasiswa, Mata Kuliah, dan Jadwal.
+- Sistem KRS mahasiswa dengan validasi lebih baik dan batas 24 SKS.
+- Relasi data otomatis antara dosen, mahasiswa, mata kuliah, dan jadwal.
+- Middleware role-based untuk memisahkan akses administrator dan mahasiswa.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## Modul & Halaman Utama
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+| Halaman | Fungsi |
+| --- | --- |
+| `/` | Landing page default Laravel.
+| `/dashboard` | Redirect ke dashboard sesuai peran.
+| `/profile` | Pengaturan profil pengguna.
+| `/admin/dosen` | Manajemen data dosen.
+| `/admin/mahasiswa` | Manajemen data mahasiswa.
+| `/admin/matakuliah` | Manajemen data mata kuliah.
+| `/admin/jadwal` | Manajemen jadwal perkuliahan.
+| `/mahasiswa/dashboard` | Panel KRS mahasiswa.
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+## Teknologi Utama
 
-## Agentic Development
+- PHP 8.3
+- Laravel 13.x
+- Laravel Breeze untuk autentikasi
+- Blade template engine
+- Vite untuk build asset
+- MySQL / SQLite / PostgreSQL sebagai database
 
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Struktur Aplikasi
+
+- `app/Http/Controllers/` - logika untuk setiap modul.
+- `app/Models/` - model data utama: `Dosen`, `Mahasiswa`, `Matakuliah`, `Jadwal`, `User`.
+- `resources/views/` - antarmuka pengguna untuk admin dan mahasiswa.
+- `routes/web.php` - definisi rute aplikasi.
+- `database/migrations/` - skema tabel dan relasi.
+
+## Instalasi & Jalankan
+
+1. Salin `.env.example` menjadi `.env`.
+2. Jalankan `composer install`.
+3. Jalankan `npm install`.
+4. Jalankan `php artisan key:generate`.
+5. Sesuaikan konfigurasi database di `.env`.
+6. Jalankan `php artisan migrate`.
+7. Jalankan `php artisan serve`.
+
+### Perintah Pendukung
 
 ```bash
-composer require laravel/boost --dev
-
-php artisan boost:install
+npm run dev
+npm run build
+php artisan migrate:fresh --seed
+php artisan test
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+## Catatan Penting
 
-## Tentang Proyek SIAKAD
+- Pastikan data akun mahasiswa sudah sesuai dengan data master mahasiswa untuk sinkronisasi dashboard.
+- Batas pengambilan KRS adalah 24 SKS.
+- Admin harus mendaftarkan data mahasiswa dengan nama yang sama persis seperti yang digunakan di akun login.
 
-SIAKAD adalah sistem informasi akademik berbasis Laravel untuk manajemen data dosen, mahasiswa, mata kuliah, jadwal perkuliahan, dan Kartu Rencana Studi (KRS).
+## Lisensi
 
-Aplikasi ini memiliki dua alur pengguna utama:
-- **Admin**: kelola master data akademik, jadwal perkuliahan, dan hak akses.
-- **Mahasiswa**: akses dashboard akademik, pilih mata kuliah KRS, dan pantau jadwal.
-
-### Fitur Utama
-
-- Autentikasi lengkap: pendaftaran, login, verifikasi email, dan profil pengguna.
-- Dashboard admin untuk manajemen master data dosen, mahasiswa, mata kuliah, dan jadwal.
-- Modul KRS mahasiswa dengan validasi pengambilan dan batas beban studi 24 SKS.
-- Relasi data otomatis antara dosen, mahasiswa, jadwal, dan mata kuliah.
-- Middleware role-based untuk memisahkan akses `admin` dan `mahasiswa`.
-
-### Struktur Halaman
-
-- `/` : halaman landing default Laravel.
-- `/dashboard` : redirect ke dashboard sesuai peran pengguna.
-- `/profile` : halaman pengaturan profil akun.
-- `/admin/dosen` : manajemen data dosen.
-- `/admin/mahasiswa` : manajemen data mahasiswa.
-- `/admin/matakuliah` : manajemen data mata kuliah.
-- `/admin/jadwal` : manajemen jadwal perkuliahan.
-- `/mahasiswa/dashboard` : panel KRS dan jadwal mahasiswa.
-
-### Cara Menjalankan
-
-1. Salin `.env.example` ke `.env`.
-2. Jalankan `composer install` dan `npm install`.
-3. Jalankan `php artisan key:generate`.
-4. Konfigurasikan database di `.env`.
-5. Jalankan `php artisan migrate`.
-6. Jalankan `php artisan serve`.
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Code of Conduct
-
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+Proyek ini menggunakan lisensi MIT.
